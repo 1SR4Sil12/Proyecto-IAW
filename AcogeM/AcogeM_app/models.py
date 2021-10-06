@@ -13,20 +13,15 @@ class Protectora(models.Model):
 
 class Animal(models.Model):
 
-	PERRO = 1
-	GATO = 2
-	HURON = 3
-	CONEJO = 4
-
-	TIPOS_ANIMALES (
-		(PERRO, "Perro"),
-		(GATO, "Gato"),
-		(HURON, "Huron"),
-		(CONEJO, "Conejo"),
+	LOAN_STATUS (
+		("p", "Perro"),
+		("g", "Gato"),
+		("h", "Huron"),
+		("c", "Conejo"),
 	)
 
-	protectora = models.ForeignKey(Protectora, on_delete=models.CASCADE)
-	tipo = models.PositiveSmallIntegerField('Tipo', choices=TIPOS_ANIMALES, default=PERRO)
+	tipo = models.CharField('Tipo', max_length=1, choices=LOAN_STATUS, default="p")
+	protectora = models.ForeignKey('Protectora', on_delete=models.CASCADE)
 	nom = models.CharField('Nombre', max_length=50)
 	descrip = models.CharField('Descripción', max_length=200)
 #	foto = models.ImageField('Imagen', blank=True, null=True, upload_to=localizacion_imagen)
