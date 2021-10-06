@@ -31,3 +31,10 @@ class Animal(models.Model):
 	descrip = models.CharField('Descripción', max_length=200)
 #	foto = models.ImageField('Imagen', blank=True, null=True, upload_to=localizacion_imagen)
 
+class User(models.Model):
+	nom = models.CharField('Nombre', max_length=30)
+	ape = models.CharField('Apellidos', max_length=50)
+	dni = forms.ESIdentityCardNumberField(only_nif=True)
+	tel = models.IntegerField('Teléfono', max_digits=9)
+	exp = models.CharField('Experiencia con animales', max_length=200)
+
