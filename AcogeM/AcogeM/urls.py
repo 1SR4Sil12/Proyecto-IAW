@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from AcogeM_app.views import CiudadListView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ciudades/', CiudadListView.as_view()),
 ]
