@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Ciudades</h2>
+    <ul>
+        {% for ciudad in object_list %}
+            <li>{{ ciudad.nom }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

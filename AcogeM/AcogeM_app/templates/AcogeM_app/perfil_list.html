@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Perfiles</h2>
+    <ul>
+        {% for perfil in object_list %}
+            <li>{{ perfil.nom }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
