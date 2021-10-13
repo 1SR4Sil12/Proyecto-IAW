@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-_40gl!_d!xholic@sqtorp)x14l(7cy4*3*oz7tfxiy)=ynd)*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', '10.1.2.204', 'localhost']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
 
     'AcogeM_app',
 ]

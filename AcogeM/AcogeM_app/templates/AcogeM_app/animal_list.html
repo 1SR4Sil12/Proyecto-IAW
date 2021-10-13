@@ -4,7 +4,7 @@
     <h2>Animales</h2>
     <ul>
         {% for animal in object_list %}
-            <li>{{ animal.nom }}: {{ animal.descrip }}</li>
+            <li><a href="{% url 'animal-detail' animal.pk %}">{{ animal.nom }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

@@ -16,12 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from AcogeM_app.views import CiudadListView, ProtectoraListView, AnimalDetailView, PerfilListView
+from AcogeM_app.views import CiudadListView, ProtectoraListView, AnimalListView, PerfilListView
+from AcogeM_app.views import AnimalDetailView, ProtectoraDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ciudades/', CiudadListView.as_view(), name='Ciudad'),
-    path('protectoras/', ProtectoraListView.as_view(), name='Protectora'),
-    path('animales/', AnimalDetailView.as_view(), name='Descripcion_animal'),
-    path('perfiles/', PerfilListView.as_view(), name='Perfil'),
+    path('ciudades/', CiudadListView.as_view(), name='ciudad'),
+    path('protectoras/', ProtectoraListView.as_view(), name='protectora'),
+    path('protectoras/<int:pk>/', ProtectoraDetailView.as_view(), name='protectora-detail'),
+    path('animales/', AnimalListView.as_view(), name='animal'),
+    path('animales/<int:pk>/', AnimalDetailView.as_view(), name='animal-detail'),
+    path('perfiles/', PerfilListView.as_view(), name='perfil'),
 ]

@@ -4,7 +4,7 @@
     <h2>Protectoras</h2>
     <ul>
         {% for protectora in object_list %}
-            <li>{{ protectora.nom }}</li>
+            <li><a href="{% url 'protectora-detail' protectora.pk %}">{{ protectora.nom }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
