@@ -37,6 +37,9 @@ class Animal(models.Model):
 	def __str__(self):
 		return f'{self.nom}: {self.descrip}'
 
+	# def get_absolute_url(self):
+ #        return reverse('animal-detail', kwargs={'pk': self.pk})
+
 class Perfil(models.Model):
 	nom = models.CharField('Nombre', max_length=30)
 	ape = models.CharField('Apellidos', max_length=50)
