@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Esta es la página de incio de mi aplicación web</h2>
+    <h3>Mi aplicación contiene:</h3>
+    <ul>
+        <li><a href="{% url 'ciudad-list' %}">Ciudades</a></li>
+        <li><a href="{% url 'protectora-list' %}">Protectoras</a></li>
+        <li><a href="{% url 'animal-list' %}">Animales</a></li>
+        <li><a href="{% url 'perfil-list' %}">Perfiles</a></li>
+    </ul>
+{% endblock %}
