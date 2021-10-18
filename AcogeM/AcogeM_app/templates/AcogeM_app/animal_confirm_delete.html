@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div>
+  	<h2>Estás seguro de eliminar a {{ animal.nom }}</h2>
+    <form action="" method="POST">
+      {% csrf_token %}
+
+      <button type="submit">Si, acepto</button>
+      <a href="{% url 'animal-list' %}">Cancelar</a>
+    </form>
+  </div>
+
+{% endblock %}

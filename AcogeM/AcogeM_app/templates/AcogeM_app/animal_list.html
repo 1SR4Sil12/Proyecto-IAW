@@ -4,7 +4,12 @@
     <h2>Animales</h2>
     <ul>
         {% for animal in object_list %}
-            <li><a href="{% url 'animal-detail' animal.pk %}">{{ animal.nom }}</a></li>
+            <li><a href="{% url 'animal-detail' animal.pk %}">{{ animal.nom }}</a> 
+            	(<a href="{% url 'animal-update' animal.pk %">editar</a>) 
+            	(<a href="{% url 'animal-delete' animal.pk %">borrar</a>)</li>
         {% endfor %}
     </ul>
+    <p>
+    	<a href="{% url 'animal-add' %}">Añadir animal nuevo</a>
+    </p>
 {% endblock %}

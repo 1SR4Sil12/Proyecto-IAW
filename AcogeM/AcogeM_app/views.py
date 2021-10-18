@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from AcogeM_app.models import Ciudad, Protectora, Animal, Perfil
+from AcogeM_app.forms import AnimalForm
 from django.urls import reverse_lazy
 
 def index(request):
@@ -37,18 +38,62 @@ class PerfilDetailView(DetailView):
 
 # Configurando vistas de edición
 
+# def animal_create(request, pk):
+# 	animal = get_object_or_404(Animal, pk=pk)
+
+# 	if request.method == 'POST':
+# 		form = AnimalForm(request.POST)
+# 		if form.is_valid():
+# 			form.save()
+# 	else:
+# 		form = AnimalForm(instance=animal)
+
+# 	context = {
+# 		'form': form
+# 	}
+	
+# 	return render(request, 'AcogeM_app/animal_form.html', context)
+
+# def animal_edit(request, pk):
+
+# 	animal = get_object_or_404(Animal, pk=pk)
+
+# 	if request.method == 'POST':
+# 		form = AnimalForm(request.POST, instance=animal)
+# 		if form.is_valid():
+
+# 			# animal.nom = form.cleaned_data['nom']
+# 			# animal.descrip = form.cleaned_data['descrip']
+# 			# animal.tipo = form.cleaned_data['tipo']
+# 			# animal.save()
+
+# 			form.save()
+# 	else:
+
+# 		# form = AnimalForm(initial={
+# 		# 	'nom': animal.nom,
+# 		# 	'descrip': animal.descrip,
+# 		# 	'tipo': animal.tipo,
+# 		# 	})
+
+# 		form = AnimalForm(instance=animal)
+
+# 	context = {
+# 		'form': form
+# 	}
+	
+# 	return render(request, 'AcogeM_app/animal_form.html', context)
+# 	success_url = reverse_lazy('animal-list')
+
 class AnimalCreateView(CreateView):
-    model = Animal
-    fields = ['nom']
-
-    def form_valid(self, form):
-        form.instance.created_by = self.request.user
-        return super().form_valid(form)
-
+	model = Animal
+	form_class = AnimalForm
+	success_url = reverse_lazy('animal-list')
 
 class AnimalUpdateView(UpdateView):
-    model = Animal
-    fields = ['nom']
+	model = Animal
+	form_class = AnimalForm
+	success_url = reverse_lazy('animal-list')
 
 class AnimalDeleteView(DeleteView):
     model = Animal
