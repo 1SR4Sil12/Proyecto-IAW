@@ -38,50 +38,44 @@ class PerfilDetailView(DetailView):
 
 # Configurando vistas de edición
 
+# Estas son las primeras formas en las que creé las vistas, la primera va enlazada
+# con el forms.py de tal forma que en dicho archivo le digo los campos que quiero que forme
+# parte del formulario. La segunda ya es, con todos los campos excluyendo unos cuantos. En la
+# vista lo que tengo que hacer es especificar los campos que quiero completar.
+
 # def animal_create(request, pk):
 # 	animal = get_object_or_404(Animal, pk=pk)
-
 # 	if request.method == 'POST':
 # 		form = AnimalForm(request.POST)
 # 		if form.is_valid():
 # 			form.save()
 # 	else:
 # 		form = AnimalForm(instance=animal)
-
 # 	context = {
 # 		'form': form
 # 	}
-	
 # 	return render(request, 'AcogeM_app/animal_form.html', context)
 
 # def animal_edit(request, pk):
-
 # 	animal = get_object_or_404(Animal, pk=pk)
-
 # 	if request.method == 'POST':
 # 		form = AnimalForm(request.POST, instance=animal)
 # 		if form.is_valid():
-
 # 			# animal.nom = form.cleaned_data['nom']
 # 			# animal.descrip = form.cleaned_data['descrip']
 # 			# animal.tipo = form.cleaned_data['tipo']
 # 			# animal.save()
-
 # 			form.save()
 # 	else:
-
 # 		# form = AnimalForm(initial={
 # 		# 	'nom': animal.nom,
 # 		# 	'descrip': animal.descrip,
 # 		# 	'tipo': animal.tipo,
 # 		# 	})
-
 # 		form = AnimalForm(instance=animal)
-
 # 	context = {
 # 		'form': form
 # 	}
-	
 # 	return render(request, 'AcogeM_app/animal_form.html', context)
 # 	success_url = reverse_lazy('animal-list')
 

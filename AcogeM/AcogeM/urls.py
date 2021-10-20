@@ -39,5 +39,5 @@ urlpatterns = [
     path('animales/<int:pk>/delete/', AnimalDeleteView.as_view(), name='animal-delete'),
     
     path('perfiles/', PerfilListView.as_view(), name='perfil-list'),
-    path('perfiles/', PerfilDetailView.as_view(), name='perfil-detail'),
+    path('perfiles/<int:pk>/', PerfilDetailView.as_view(), name='perfil-detail'),
 ]
