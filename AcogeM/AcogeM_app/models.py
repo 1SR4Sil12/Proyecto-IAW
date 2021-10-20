@@ -33,15 +33,13 @@ class Animal(models.Model):
 	]
 
 	tipo = models.CharField('Tipo', max_length=1, choices=TIPO_ANIMALES, blank=True, default="p")
+	edad = models.IntegerField('Edad', default=0)
 
 	def __str__(self):
 		return f'{self.nom}: {self.descrip}'
 
-	# def get_absolute_url(self):
- #        return reverse('animal-detail', kwargs={'pk': self.pk})
-
 class Perfil(models.Model):
-	nom = models.CharField('Nombre', max_length=30)
+	# nom = models.CharField('Nombre', max_length=30)
 	ape = models.CharField('Apellidos', max_length=50)
 	dni = models.CharField(max_length=9)
 	tel = models.IntegerField('Teléfono', blank=True, null=True)
