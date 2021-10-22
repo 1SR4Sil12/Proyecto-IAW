@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -9,6 +10,9 @@ class Ciudad(models.Model):
     def __str__(self):
     	return f'{self.nom}'
 
+    class Meta:
+    	verbose_name_plural = "Ciudades"
+
 class Protectora(models.Model):
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
     nom = models.CharField('Nombre', max_length=100)
@@ -17,6 +21,9 @@ class Protectora(models.Model):
 
     def __str__(self):
     	return f'{self.nom}: {self.direc}'
+
+    class Meta:
+    	verbose_name_plural = "Protectoras"
 
 class Animal(models.Model):
 
@@ -33,19 +40,26 @@ class Animal(models.Model):
 	]
 
 	tipo = models.CharField('Tipo', max_length=1, choices=TIPO_ANIMALES, blank=True, default="p")
-	edad = models.IntegerField('Edad', default=0)
+	edad = models.IntegerField('Edad', default=0, null=True)
 
 	def __str__(self):
 		return f'{self.nom}: {self.descrip}'
 
+	class Meta:
+		verbose_name_plural = "Animales"
+
 class Perfil(models.Model):
 	# nom = models.CharField('Nombre', max_length=30)
+	user = models.OneToOneField(User, on_delete=models.CASCADE, default=0)
 	ape = models.CharField('Apellidos', max_length=50)
 	dni = models.CharField(max_length=9)
 	tel = models.IntegerField('Teléfono', blank=True, null=True)
 	exp = models.TextField('Experiencia con animales')
 
 	def __str__(self):
-		return f'{self.nom}'
+		return f'{self.user} {self.ape}'
 
+	class Meta:
+		verbose_name_plural = "Perfiles"
+			
 
