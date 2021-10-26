@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from AcogeM_app import views
 
 from AcogeM_app.views import CiudadListView, ProtectoraListView, AnimalListView, PerfilListView
@@ -40,4 +40,7 @@ urlpatterns = [
     
     path('perfiles/', PerfilListView.as_view(), name='perfil-list'),
     path('perfiles/<int:pk>/', PerfilDetailView.as_view(), name='perfil-detail'),
+
+	#Add Django site authentication urls (for login, logout, password management)
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
