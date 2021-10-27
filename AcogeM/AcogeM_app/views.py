@@ -7,6 +7,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from AcogeM_app.models import Ciudad, Protectora, Animal, Perfil
 from AcogeM_app.forms import AnimalForm
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def index(request):
       return render(request,'AcogeM_app/index.html')
@@ -22,7 +23,7 @@ class ProtectoraListView(ListView):
 class AnimalListView(ListView):
   	model = Animal
 
-class PerfilListView(ListView):
+class PerfilListView(LoginRequiredMixin, ListView):
 	model = Perfil
 
 # Configurando las vistas detalle
@@ -79,17 +80,17 @@ class PerfilDetailView(DetailView):
 # 	return render(request, 'AcogeM_app/animal_form.html', context)
 # 	success_url = reverse_lazy('animal-list')
 
-class AnimalCreateView(CreateView):
+class AnimalCreateView(LoginRequiredMixin, CreateView):
 	model = Animal
 	form_class = AnimalForm
 	success_url = reverse_lazy('animal-list')
 
-class AnimalUpdateView(UpdateView):
+class AnimalUpdateView(LoginRequiredMixin, UpdateView):
 	model = Animal
 	form_class = AnimalForm
 	success_url = reverse_lazy('animal-list')
 
-class AnimalDeleteView(DeleteView):
+class AnimalDeleteView(LoginRequiredMixin, DeleteView):
     model = Animal
     success_url = reverse_lazy('animal-list')
 
