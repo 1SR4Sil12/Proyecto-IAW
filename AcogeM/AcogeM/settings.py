@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'AcogeM_app',
+
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [

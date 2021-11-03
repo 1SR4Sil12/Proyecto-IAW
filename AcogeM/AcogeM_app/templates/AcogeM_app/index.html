@@ -1,15 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Esta es la página de inicio de mi aplicación web AcogeM</h2>
+    {% if user.is_authenticated %}
+    <h2>Hola {{ user }}</h2>
+    {% endif %}
+    <h2>Esta es la página de inicio de mi aplicación web AcógeM</h2>
     <h3>Mi aplicación contiene:</h3>
     <ul>
-        <li><a href="{% url 'ciudad-list' %}">Ciudades</a></li>
-        <li><a href="{% url 'protectora-list' %}">Protectoras</a></li>
-        <li><a href="{% url 'animal-list' %}">Animales</a></li>
-        <li><a href="{% url 'perfil-list' %}">Perfiles</a></li>
+        <li class="pagina"><a href="{% url 'ciudad-list' %}">Ciudades</a></li>
+        <li class="pagina"><a href="{% url 'protectora-list' %}">Protectoras</a></li>
+        <li class="pagina"><a href="{% url 'animal-list' %}">Animales</a></li>
+        <li class="pagina"><a href="{% url 'perfil-list' %}">Perfiles</a></li>
     </ul>
-    {% if user.is_authenticated %}
+    <!-- {% if user.is_authenticated %}
         <a href="{% url 'logout' %}" class="btn btn-default">Cerrar Sesión</a>
-    {% endif %}
+    {% endif %} -->
 {% endblock %}
