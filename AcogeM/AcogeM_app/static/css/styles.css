@@ -15,6 +15,7 @@
 
 body {
 	background: #ffffff;
+	background-color: #EAEDED;
 	margin: 0;
 	height: 100%;
 	color: #384452;
@@ -590,4 +591,38 @@ csmall2 {
 
 .credits {
   color: #fff;
+}
+
+@media (min-width: 48em) {
+
+    .navbar-header,
+    .content {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+
+    #layout {
+        padding-left: 150px;
+        left: 0;
+    }
+    #menu {
+        left: 150px;
+    }
+
+    .menu-link {
+        position: fixed;
+        left: 150px;
+        display: none;
+    }
+
+    #layout.active .menu-link {
+        left: 150px;
+    }
+}
+
+@media (max-width: 48em) {
+    #layout.active {
+        position: relative;
+        left: 150px;
+    }
 }

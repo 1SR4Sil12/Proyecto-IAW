@@ -2,9 +2,11 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-    <h2>Hola {{ user }}</h2>
+    <h2>Hola {{ user }}, ésta es la página de inicio de AcógeM.</h2>
+    {% else %}
+    <h2>Esta es la página de inicio de AcógeM</h2>
     {% endif %}
-    <h2>Esta es la página de inicio de mi aplicación web AcógeM</h2>
+    
     <h3>Mi aplicación contiene:</h3>
     <ul>
         <li class="pagina"><a href="{% url 'ciudad-list' %}">Ciudades</a></li>
