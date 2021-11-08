@@ -11,7 +11,7 @@
 
   <!-- Add additional CSS in static file -->
   {% load static %}
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <!-- <style type="text/css">
@@ -45,7 +45,7 @@
           <li><a href="">ABOUT</a></li>
           <li><a href="">CONTACT</a></li>
           {% if user.is_authenticated %}
-          <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+          <li><a href="{% url 'logout' %}">LOGOUT ({{ user }})</a></li>
           {% else %}
           <li><a href="{% url 'login' %}">LOGIN</a></li>
           {% endif %}
