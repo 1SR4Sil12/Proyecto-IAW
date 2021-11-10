@@ -8,6 +8,7 @@ from AcogeM_app.models import Ciudad, Protectora, Animal, Perfil
 from AcogeM_app.forms import AnimalForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 def index(request):
       return render(request,'AcogeM_app/index.html')
@@ -93,6 +94,16 @@ class AnimalUpdateView(LoginRequiredMixin, UpdateView):
 class AnimalDeleteView(LoginRequiredMixin, DeleteView):
     model = Animal
     success_url = reverse_lazy('animal-list')
+
+def busqueda(request):
+	queryset = request.GET.get("buscar")
+	animales = Animal.objects.all()
+	if queryset:
+		animales = Animal.objects.filter(
+			Q(nom = queryset) |
+			Q(protectora = queryset)
+		).distinct()
+	return render(request, 'index.html', {'animales':animales})
 
 
 
