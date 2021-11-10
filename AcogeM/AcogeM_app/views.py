@@ -4,8 +4,8 @@ from django.shortcuts import render, get_object_or_404
 
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from AcogeM_app.models import Ciudad, Protectora, Animal, Perfil
-from AcogeM_app.forms import AnimalForm
+from AcogeM_app.models import Ciudad, Protectora, Animal, Perfil, User
+from AcogeM_app.forms import AnimalForm, UserForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
@@ -95,6 +95,11 @@ class AnimalDeleteView(LoginRequiredMixin, DeleteView):
     model = Animal
     success_url = reverse_lazy('animal-list')
 
+class UserCreateView(CreateView):
+	model = User
+	form_class = UserForm
+	success_url = reverse_lazy('index.html')
+
 def busqueda(request):
 	queryset = request.GET.get("buscar")
 	animales = Animal.objects.all()
@@ -103,7 +108,7 @@ def busqueda(request):
 			Q(nom = queryset) |
 			Q(protectora = queryset)
 		).distinct()
-	return render(request, 'index.html', {'animales':animales})
+	return render(request, 'search.html', {'animales':animales})
 
 
 

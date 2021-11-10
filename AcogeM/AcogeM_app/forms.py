@@ -1,5 +1,5 @@
 from django import forms
-from AcogeM_app.models import Animal
+from AcogeM_app.models import Animal, User
 
 # Una forma de crear el formulario, especificandole los campos que quiero, de la
 # forma uso todos los campos, y excluyo algunos.
@@ -13,3 +13,13 @@ class AnimalForm(forms.ModelForm):
 	class Meta:
 		model = Animal
 		exclude = ['created_at', 'created_by', 'last_modified_by']
+
+class UserForm(forms.ModelForm):
+	username = forms.CharField(max_length=30)
+	password = forms.CharField(max_length=20, widget=forms.PasswordInput)
+	email = forms.CharField(max_length=50)
+
+	class Meta:
+		model = User
+		fields = ('username', 'password', 'email')
+		# exclude = ['created_at', 'created_by', 'last_modified_by', 'last_login', 'groups', 'user_permissions', 'date_joined']

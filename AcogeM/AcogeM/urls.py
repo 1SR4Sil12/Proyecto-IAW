@@ -20,6 +20,7 @@ from AcogeM_app import views
 from AcogeM_app.views import CiudadListView, ProtectoraListView, AnimalListView, PerfilListView
 from AcogeM_app.views import AnimalDetailView, ProtectoraDetailView,PerfilDetailView
 from AcogeM_app.views import AnimalCreateView, AnimalUpdateView, AnimalDeleteView
+from AcogeM_app.views import UserCreateView
 
 #Django REST API
 from django.contrib.auth.models import User
@@ -59,6 +60,8 @@ urlpatterns = [
     
     path('perfiles/', PerfilListView.as_view(), name='perfil-list'),
     path('perfiles/<int:pk>/', PerfilDetailView.as_view(), name='perfil-detail'),
+
+    path('registrar/', UserCreateView.as_view(), name='user-add'),
 
 	#Add Django site authentication urls (for login, logout, password management)
     path('accounts/', include('django.contrib.auth.urls')),
