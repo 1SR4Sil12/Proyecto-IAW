@@ -100,15 +100,33 @@ class UserCreateView(CreateView):
 	form_class = UserForm
 	success_url = reverse_lazy('index.html')
 
-def busqueda(request):
-	queryset = request.GET.get("buscar")
-	animales = Animal.objects.all()
-	if queryset:
-		animales = Animal.objects.filter(
-			Q(nom = queryset) |
-			Q(protectora = queryset)
-		).distinct()
-	return render(request, 'search.html', {'animales':animales})
+# def busqueda(request):
+# 	queryset = request.GET.get("buscar")
+# 	animales = Animal.objects.all()
+# 	if queryset:
+# 		animales = Animal.objects.filter(
+# 			Q(nom = queryset) |
+# 			Q(protectora = queryset)
+# 		).distinct()
+# 	return render(request, 'search.html', {'animales':animales})
+
+def search(request):
+	if request.method == "POST":
+		buscar = request.POST['buscar']
+		animales = Animal.objects.filter(nom__contains=buscar)
+
+		return render(request, 
+			'AcogeM_app/search.html',
+			{'buscar':buscar,
+			'animales':animales})
+	else:
+		return render(request, 
+			'AcogeM_app/search.html',
+			{})
+
+
+
+
 
 
 

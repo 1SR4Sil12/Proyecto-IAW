@@ -42,7 +42,7 @@
       <div class="navbar-collapse collapse navbar-right">
         <ul class="nav navbar-nav">
           <li class="active"><a href="{% url 'index.html' %}">HOME</a></li>
-          <li><a href="">ABOUT</a></li>
+          <li><a href="{% url 'animal-list' %}">ANIMALES</a></li>
           <li><a href="">CONTACT</a></li>
           {% if user.is_authenticated %}
           <li><a href="{% url 'logout' %}">LOGOUT ({{ user }})</a></li>

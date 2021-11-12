@@ -61,6 +61,9 @@ urlpatterns = [
     path('perfiles/', PerfilListView.as_view(), name='perfil-list'),
     path('perfiles/<int:pk>/', PerfilDetailView.as_view(), name='perfil-detail'),
 
+    #Search
+    path('search/', views.search, name='search'),
+
     path('registrar/', UserCreateView.as_view(), name='user-add'),
 
 	#Add Django site authentication urls (for login, logout, password management)

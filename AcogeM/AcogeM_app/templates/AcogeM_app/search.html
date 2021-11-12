@@ -1,16 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-    <h2>Hola {{ user }}, ésta es la página de inicio de AcógeM.</h2>
-    {% else %}
-    <h2>Esta es la página de inicio de AcógeM</h2>
-    {% endif %}
 
     <div class="container">
         <div class="row">
             <div class="col-md-12 search">
-                <form method="get">
+                <form class="d-felx" method="POST" action="{% url 'search' %}">
+                    {% csrf_token %}
                     <div class="custom-search-input">
                         <div class="input-group col-md-12">
                             <input type="text" class="form-control" placeholder="Buscar..." name="buscar">
@@ -26,8 +22,16 @@
         </div>
     </div>
     
-    {% for animal in object_list %}
-    <li><a href="{% url 'animal-detail' animal.pk %}">{{ animal.nom }}</a></li>
-    {% endfor %}
+    <center>
+    {% if buscar %}
+        <h1>Has buscado {{ buscar }}</h1>
+        <br/>
+        {% for animal in animales %}
+            <a href="{% url 'animal-detail' animal.pk %}">{{ animal }}</a><br/>
+        {% endfor %}
+    {% else %}
+        <h1>No has buscado nada</h1>
+    {% endif %}
+    </center>
 
 {% endblock %}
