@@ -27,7 +27,13 @@
         <h1>Has buscado {{ buscar }}</h1>
         <br/>
         {% for animal in animales %}
-            <a href="{% url 'animal-detail' animal.pk %}">{{ animal }}</a><br/>
+            <a href="{% url 'animal-detail' animal.pk %}">{{ animal }}</a> - {{ animal.protectora }}<br/>
+        {% endfor %}
+        {% for ciudad in ciudades %}
+            {{ ciudad }}<br/>
+        {% endfor %}
+        {% for protectora in protectoras %}
+            <a href="{% url 'protectora-detail' protectora.pk %}">{{ protectora }}</a><br/>
         {% endfor %}
     {% else %}
         <h1>No has buscado nada</h1>

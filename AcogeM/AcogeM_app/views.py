@@ -114,11 +114,15 @@ def search(request):
 	if request.method == "POST":
 		buscar = request.POST['buscar']
 		animales = Animal.objects.filter(nom__contains=buscar)
+		ciudades = Ciudad.objects.filter(nom__contains=buscar)
+		protectoras = Protectora.objects.filter(nom__contains=buscar)
 
 		return render(request, 
 			'AcogeM_app/search.html',
 			{'buscar':buscar,
-			'animales':animales})
+			'animales':animales,
+			'ciudades':ciudades,
+			'protectoras':protectoras})
 	else:
 		return render(request, 
 			'AcogeM_app/search.html',

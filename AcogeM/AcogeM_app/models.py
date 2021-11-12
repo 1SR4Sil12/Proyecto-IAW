@@ -43,7 +43,7 @@ class Animal(models.Model):
 	edad = models.IntegerField('Edad', default=0, null=True)
 
 	def __str__(self):
-		return f'{self.nom}: {self.descrip}'
+		return f'{self.nom}'
 
 	class Meta:
 		verbose_name_plural = "Animales"
