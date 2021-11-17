@@ -1,13 +1,14 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
 
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from AcogeM_app.models import Ciudad, Protectora, Animal, Perfil, User
-from AcogeM_app.forms import AnimalForm, UserForm
+from AcogeM_app.forms import AnimalForm, PerfilForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Q
 
 def index(request):
@@ -95,21 +96,25 @@ class AnimalDeleteView(LoginRequiredMixin, DeleteView):
     model = Animal
     success_url = reverse_lazy('animal-list')
 
-class UserCreateView(CreateView):
-	model = User
-	form_class = UserForm
-	success_url = reverse_lazy('index.html')
+# --------------- Registro de Usuario -----------------
+def RegistroUsuario(request):
+	if request.method == "POST":
+		UForm = UserCreationForm(request.POST)
+		PForm = PerfilForm(request.POST)
+		if UForm.is_valid() and PForm.is_valid():
+			Usuario = UForm.save(commit=False)
+			Perfil = PForm.save(commit=False)
+			Perfil.user = Usuario
+			UForm.save()
+			PForm.save()
+			return redirect('index.html')
+	else:
+		UForm = UserCreationForm
+		PForm = PerfilForm
 
-# def busqueda(request):
-# 	queryset = request.GET.get("buscar")
-# 	animales = Animal.objects.all()
-# 	if queryset:
-# 		animales = Animal.objects.filter(
-# 			Q(nom = queryset) |
-# 			Q(protectora = queryset)
-# 		).distinct()
-# 	return render(request, 'search.html', {'animales':animales})
+	return render(request, 'registration/registro.html', {'UForm': UForm, 'PForm': PForm})
 
+# --------------- Barra de búsqueda -------------------
 def search(request):
 	if request.method == "POST":
 		buscar = request.POST['buscar']
