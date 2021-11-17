@@ -46,6 +46,9 @@
           <li><a href="">CONTACT</a></li>
           {% if user.is_authenticated %}
           <li><a href="{% url 'logout' %}">LOGOUT ({{ user }})</a></li>
+            {% if user.is_staff %}
+              <li><a href="admin/">ADMIN</a></li>
+            {% endif %}
           {% else %}
           <li><a href="{% url 'login' %}">LOGIN</a></li>
           {% endif %}
