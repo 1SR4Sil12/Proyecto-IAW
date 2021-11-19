@@ -9,6 +9,7 @@ from AcogeM_app.forms import AnimalForm, PerfilForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
 from django.db.models import Q
 
 def index(request):
@@ -107,6 +108,10 @@ def RegistroUsuario(request):
 			Perfil.user = Usuario
 			UForm.save()
 			PForm.save()
+			username = UForm.cleaned_data['username']
+			password = UForm.cleaned_data['password1']
+			user = authenticate(username=username, password=password)
+			login(request, user)
 			return redirect('index.html')
 	else:
 		UForm = UserCreationForm
