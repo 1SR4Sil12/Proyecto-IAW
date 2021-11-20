@@ -24,7 +24,7 @@
     
     <center>
     {% if buscar %}
-        <h1>Has buscado {{ buscar }}</h1>
+        <h1>Resultados para la búsqueda: {{ buscar }}</h1>
         <br/>
         {% for animal in animales %}
             <a href="{% url 'animal-detail' animal.pk %}">{{ animal }}</a> - {{ animal.protectora }}<br/>
