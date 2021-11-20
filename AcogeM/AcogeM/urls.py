@@ -20,6 +20,7 @@ from AcogeM_app import views
 from AcogeM_app.views import CiudadListView, ProtectoraListView, AnimalListView, PerfilListView
 from AcogeM_app.views import AnimalDetailView, ProtectoraDetailView,PerfilDetailView
 from AcogeM_app.views import AnimalCreateView, AnimalUpdateView, AnimalDeleteView
+from AcogeM_app.views import PerfilUpdateView
 from AcogeM_app.views import RegistroUsuario
 
 #Django REST API
@@ -60,6 +61,7 @@ urlpatterns = [
     
     path('perfiles/', PerfilListView.as_view(), name='perfil-list'),
     path('perfiles/<int:pk>/', PerfilDetailView.as_view(), name='perfil-detail'),
+    path('perfiles/<int:pk>/update', PerfilUpdateView.as_view(), name='perfil-update'),
 
     #Search
     path('search/', views.search, name='search'),

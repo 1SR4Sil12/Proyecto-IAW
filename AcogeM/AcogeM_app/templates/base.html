@@ -39,32 +39,47 @@
           </button> -->
         <a class="navbar-brand" href="{% url 'index.html' %}">AcógeM.</a>
       </div>
+      <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-2 search">
+                <form class="d-felx" method="POST" action="{% url 'search' %}">
+                    {% csrf_token %}
+                    <div class="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input type="text" class="form-control" placeholder="Buscar..." name="buscar">
+                            <p></p>
+                            <span class="input-group-list">
+                                <i class="icon icon-search"></i>
+                                <button type="submit" class="boton btn-outline-secondary">Buscar</button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> -->
       <div class="navbar-collapse collapse navbar-right">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="{% url 'index.html' %}">HOME</a></li>
-          <li><a href="{% url 'animal-list' %}">ANIMALES</a></li>
+          <li class="active"><a href="{% url 'index.html' %}">Inicio</a></li>
+          <li><a href="{% url 'ciudad-list' %}">Ciudades</a></li>
+          <li><a href="{% url 'protectora-list' %}">Protectoras</a></li>
+          <li><a href="{% url 'animal-list' %}">Animales</a></li>
           {% if user.is_authenticated %}
-            <li><a href="{% url 'perfil-detail' user.pk %}">PERFIL {{ user }}</a></li>
-          {% endif %}
-          {% if user.is_authenticated %}
-          <li><a href="{% url 'logout' %}">USUARIO {{ user }} &#9758; LOGOUT</a></li>
-            {% if user.is_staff %}
-              <li><a href="{% url 'admin:index' %}">ADMIN</a></li>
-            {% endif %}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user }} <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'perfil-detail' user.pk %}">Mi Perfil</a></li>
+              {% if user.is_staff %}
+                <li><a href="{% url 'admin:index' %}">Administración</a></li>
+              {% endif %}
+              <li><a href="{% url 'logout' %}">&#9758; Cerrar Sesión</a></li>
+            </ul>
+          </li>
           {% else %}
           <li><a href="{% url 'login' %}">LOGIN</a></li>
           <li><a href="{% url 'user-add' %}">REGISTRATE</a></li>
           {% endif %}
-          <!-- <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">PAGES <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="blog.html">BLOG</a></li>
-              <li><a href="single-post.html">SINGLE POST</a></li>
-              <li><a href="portfolio.html">PORTFOLIO</a></li>
-              <li><a href="single-project.html">SINGLE PROJECT</a></li>
-            </ul>
-          </li>
- -->        </ul>
+        </ul>
       </div>
       <!--/.nav-collapse -->
     </div>

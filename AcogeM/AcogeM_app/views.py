@@ -139,6 +139,11 @@ def search(request):
 			{})
 
 
+# ---------------- Actualizar Usuario -----------------
+class PerfilUpdateView(LoginRequiredMixin, UpdateView):
+	model = Perfil
+	form_class = PerfilForm
+	success_url = reverse_lazy('index.html')
 
 
 
