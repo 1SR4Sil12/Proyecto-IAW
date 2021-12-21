@@ -15,8 +15,7 @@ from django.db.models import Q
 def index(request):
       return render(request,'AcogeM_app/index.html')
 
-# Configurando las vistas
-
+# ------------------- Configurando las vistas -------------------
 class CiudadListView(ListView):
 	model = Ciudad
 
@@ -29,8 +28,7 @@ class AnimalListView(ListView):
 class PerfilListView(LoginRequiredMixin, ListView):
 	model = Perfil
 
-# Configurando las vistas detalle
-
+# ---------------- Configurando las vistas detalle --------------
 class AnimalDetailView(DetailView):
 	model = Animal
 
@@ -83,6 +81,8 @@ class PerfilDetailView(DetailView):
 # 	return render(request, 'AcogeM_app/animal_form.html', context)
 # 	success_url = reverse_lazy('animal-list')
 
+
+# --------------- Vistas Creación, Detalle y Borrado --------------
 class AnimalCreateView(LoginRequiredMixin, CreateView):
 	model = Animal
 	form_class = AnimalForm
@@ -97,7 +97,8 @@ class AnimalDeleteView(LoginRequiredMixin, DeleteView):
     model = Animal
     success_url = reverse_lazy('animal-list')
 
-# --------------- Registro de Usuario -----------------
+
+# --------------- Registro de Usuario ------------------------------
 def RegistroUsuario(request):
 	if request.method == "POST":
 		UForm = UserCreationForm(request.POST)
@@ -119,7 +120,8 @@ def RegistroUsuario(request):
 
 	return render(request, 'registration/registro.html', {'UForm': UForm, 'PForm': PForm})
 
-# --------------- Barra de búsqueda -------------------
+
+# --------------- Barra de búsqueda ---------------------------------
 def search(request):
 	if request.method == "POST":
 		buscar = request.POST['buscar']
