@@ -3,8 +3,9 @@
 {% block content %}
     <h2>Descripción de {{ animal.nom }}</h2>
     <ul>
-        <li>{{ animal.nom }} {{ animal.descrip }} </li>
+        <li>{{ animal.descrip }} </li>
         <li>Tiene {{ animal.edad }} años</li>
+        <img src="/media/{{ animal.foto }}">
 
     </ul>
 {% endblock %}

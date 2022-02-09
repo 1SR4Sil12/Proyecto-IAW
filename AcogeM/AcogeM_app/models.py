@@ -30,7 +30,7 @@ class Animal(models.Model):
 	protectora = models.ForeignKey('Protectora', on_delete=models.CASCADE)
 	nom = models.CharField('Nombre', max_length=50)
 	descrip = models.TextField('Descripción')
-#	foto = models.ImageField('Imagen', blank=True, null=True, upload_to=localizacion_imagen)
+	foto = models.ImageField('Imagen', blank=True, null=True, upload_to='img')
 
 	TIPO_ANIMALES = [
 	 	("p", "Perro"),

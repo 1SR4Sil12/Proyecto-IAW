@@ -14,9 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
 from django.urls import path, include
 from AcogeM_app import views
 from django.contrib.auth.decorators import permission_required
+from django.conf.urls.static import static
 
 from AcogeM_app.views import CiudadListView, ProtectoraListView, AnimalListView, PerfilListView
 from AcogeM_app.views import AnimalDetailView, ProtectoraDetailView,PerfilDetailView
@@ -76,4 +78,4 @@ urlpatterns = [
     #Django REST API url
     path('api', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

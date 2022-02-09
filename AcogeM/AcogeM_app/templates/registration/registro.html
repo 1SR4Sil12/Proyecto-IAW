@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="wrapper fadeInDown">
+	<div id="formContent">
+    	<!-- Tabs Titles -->
+    	<h2 class="active"> Sign Up </h2>
+		<form method="POST" action="{% url 'user-add' %}">
+			{% csrf_token %}
+			{{ UForm }}
+			{{ PForm }}
 
-<form method="POST" action="{% url 'user-add' %}">
-	{% csrf_token %}
-	{{ UForm }}
-	{{ PForm }}
-
-	<div>
-		<button type="submit" value="Registro">Registro</button>
+		<div>
+			<button type="submit" value="Registro">Registro</button>
+		</div>
+		</form>
 	</div>
-	
-</form>
-
-
+</div>
 {% endblock %}
