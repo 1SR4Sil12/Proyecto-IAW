@@ -148,8 +148,8 @@ class PerfilUpdateView(LoginRequiredMixin, UpdateView):
 	success_url = reverse_lazy('index.html')
 
 def AdoptarAnimal(request):
-	model = Animal
-	success_url = reverse_lazy('adoptado.html')
+	if Animal.adoptado == "False":
+		return render('AcogeM_app/adoptado.html')
 
 
 

@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
+<style type="text/css">
+  
+  body{
+    margin-top: 30%;
+  }
+
+</style>
+
 {% block content %}
     {% if user.is_authenticated %}
     <h2>Hola {{ user }}, ésta es la página de inicio de AcógeM.</h2>
