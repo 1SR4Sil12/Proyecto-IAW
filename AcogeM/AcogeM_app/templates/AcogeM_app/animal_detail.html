@@ -6,6 +6,8 @@
         <li>{{ animal.descrip }} </li>
         <li>Tiene {{ animal.edad }} años</li>
         <img src="/media/{{ animal.foto }}">
-
     </ul>
+    <div>
+		<a href="{% url 'adoptar' %}" class="btn btn-default">Adoptar</a>
+	</div>
 {% endblock %}

@@ -147,6 +147,10 @@ class PerfilUpdateView(LoginRequiredMixin, UpdateView):
 	form_class = PerfilForm
 	success_url = reverse_lazy('index.html')
 
+def AdoptarAnimal(request):
+	model = Animal
+	success_url = reverse_lazy('adoptado.html')
+
 
 
 

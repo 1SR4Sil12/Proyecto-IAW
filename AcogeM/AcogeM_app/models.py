@@ -41,6 +41,7 @@ class Animal(models.Model):
 
 	tipo = models.CharField('Tipo', max_length=1, choices=TIPO_ANIMALES, blank=True, default="p")
 	edad = models.IntegerField('Edad', default=0, null=True)
+	adoptado = models.BooleanField(default=False)
 
 	def __str__(self):
 		return f'{self.nom}'
