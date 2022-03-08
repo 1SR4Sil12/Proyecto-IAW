@@ -1,26 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 search">
-                <form class="d-felx" method="POST" action="{% url 'search' %}">
-                    {% csrf_token %}
-                    <div class="custom-search-input">
-                        <div class="input-group col-md-12">
-                            <input type="text" class="form-control" placeholder="Buscar..." name="buscar">
-                            <p></p>
-                            <span class="input-group-list">
-                                <i class="icon icon-search"></i>
-                                <button type="submit" class="boton btn-success">Buscar</button>
-                            </span>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     
     <center>
     {% if buscar %}

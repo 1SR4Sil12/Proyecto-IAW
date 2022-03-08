@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class Ciudad(models.Model):
     nom = models.CharField('Nombre', max_length=50)
     pob = models.IntegerField('Población', default=0)
+    fotociu = models.ImageField('Imagen', blank=True, null=True, upload_to='img')
 
     def __str__(self):
     	return f'{self.nom}'
@@ -17,7 +18,7 @@ class Protectora(models.Model):
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
     nom = models.CharField('Nombre', max_length=100)
     direc = models.CharField('Direccion', max_length=200)
-#   cod = models.DecimalField('Código Postal', max_digits=5, decimal_places=0, default=11000)
+    fotopro = models.ImageField('Imagen', blank=True, null=True, upload_to='img')
 
     def __str__(self):
     	return f'{self.nom}: {self.direc}'

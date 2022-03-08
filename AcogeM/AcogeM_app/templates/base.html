@@ -11,56 +11,29 @@
 
   <!-- Add additional CSS in static file -->
   {% load static %}
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
-<!-- <style type="text/css">
-  
-  a.button {
-    appearance: button;
-
-    text-decoration: none;
-    color: initial;
+<style type="text/css">
+  a{
+    font-size: medium;
   }
-
-</style> -->
+</style>
 
 <body>
 
-  <!-- Fixed navbar -->
-  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container">
-      <div class="navbar-header">
-        <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button> -->
-        <a class="navbar-brand" href="{% url 'index.html' %}">AcógeM.</a>
-      </div>
-      <!-- <form class="d-felx" method="POST" action="{% url 'search' %}">
-                    {% csrf_token %}
-                    <div class="custom-search-input">
-                        <div class="input-group col-md-12">
-                            <input type="text" class="form-control" placeholder="Buscar..." name="buscar">
-                            <p></p>
-                            <span class="input-group-list">
-                                <i class="icon icon-search"></i>
-                                <button type="submit" class="boton btn-success">Buscar</button>
-                            </span>
-                        </div>
-                    </div>
-      </form> -->
-      <div class="navbar-collapse collapse navbar-right">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="{% url 'index.html' %}">Inicio</a></li>
-          <li><a href="{% url 'ciudad-list' %}">Ciudades</a></li>
-          <li><a href="{% url 'protectora-list' %}">Protectoras</a></li>
-          <li><a href="{% url 'animal-list' %}">Animales</a></li>
-          {% if user.is_authenticated %}
+      <a href="{% url 'index.html' %}" class="navbar-brand d-flex align-items-center">
+        <strong>AcógeM</strong>
+      </a>
+          <p class="active"><a style="color: white; text-decoration: none;" href="{% url 'index.html' %}">Inicio</a></p>
+          <p><a style="color: white; text-decoration: none;" href="{% url 'ciudad-list' %}">Ciudades</a></p>
+          <p><a style="color: white; text-decoration: none;" href="{% url 'protectora-list' %}">Protectoras</a></p>
+          <p><a style="color: white; text-decoration: none;" href="{% url 'animal-list' %}">Animales</a></p>
+        {% if user.is_authenticated %}
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user }} <b class="caret"></b></a>
+            <a style="color: white; text-decoration: none;" href="#" class="" data-toggle="dropdown">{{ user }} <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="{% url 'perfil-detail' user.pk %}">Mi Perfil</a></li>
               {% if user.is_staff %}
@@ -69,33 +42,30 @@
               <li><a href="{% url 'logout' %}">&#9758; Cerrar Sesión</a></li>
             </ul>
           </li>
-          {% else %}
-          <li><a href="{% url 'login' %}">LOGIN</a></li>
-          <li><a href="{% url 'user-add' %}">REGISTRATE</a></li>
-          {% endif %}
-        </ul>
-      </div>
-      <!--/.nav-collapse -->
+        {% else %}
+          <p><a style="color: white; text-decoration: none;" href="{% url 'login' %}">LOGIN</a></p>
+          <p><a style="color: white; text-decoration: none;" href="{% url 'user-add' %}">REGISTRATE</a></p>
+        {% endif %}
+        <div class="buscar" style="position: relative; padding: 5px;">
+        <form class="d-felx" method="POST" action="{% url 'search' %}">
+          {% csrf_token %}
+          <div class="custom-search-input">
+           <div class="input-group col-md-12">
+             <input style="border-radius: 7px;" type="text" class="form-control" placeholder="Buscar" name="buscar">
+             <p></p>
+             <span class="input-group-list">
+              <i class="icon icon-search"></i>
+              <button style="margin-left: 7px; margin-top: 4px;" type="submit" class="btn btn-primary">Buscar</button>
+             </span>
+           </div>
+          </div>
+        </form>
+        </div>
     </div>
   </div>
 
-  <div class="container-fluid">
-
-    <div style="margin-top: 60px;" class="row">
-      <div class="col-sm-10 ">
-      {% block content %}
-      	<ul class="sidebar-nav">
-   			{% if user.is_authenticated %}
-     		<li>User: {{ user.get_username }}</li>
-     		<li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
-   			{% else %}
-     		<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
-   			{% endif %} 
-  		</ul>
-      {% endblock %}
-      </div>
-    </div>
-
-  </div>
+  {% block content %}
+  {% endblock %}
+      
 </body>
 </html>

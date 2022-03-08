@@ -1,14 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Protectoras</h2>
-    <ul>
+
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Protectoras</h1>
+        <p class="lead text-muted">Nuestras protectoras.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {% for protectora in object_list %}
-            <li><a href="{% url 'protectora-detail' protectora.pk %}">{{ protectora.nom }}</a></li>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="/media/{{ protectora.fotopro }}">
+            <div class="card-body">
+              <p class="card-text"><a href="{% url 'protectora-detail' protectora.pk %}">{{ protectora.nom }}</a></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">{{ protectora.direc }}, {{ protectora.ciudad }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
         {% endfor %}
-    </ul>
-    <!-- {% if user.is_authenticated %}
-       <a href="{% url 'logout' %}" class="btn btn-default">Cerrar Sesión</a>
-    {% endif %}
-    	<a href="{% url 'index.html' %}" class="btn btn-default">Inicio</a> -->
+      </div>
+    </div>
+  </div>
+
+</main>
+
 {% endblock %}

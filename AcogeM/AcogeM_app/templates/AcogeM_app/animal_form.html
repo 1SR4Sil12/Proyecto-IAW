@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
-  <div>
+  <div class="col-md-4 offset-md-4">
     <form enctype="multipart/form-data" action="" method="POST">
       {% csrf_token %}
 
-      {{ form }}
+      {{ form|crispy }}
 
       <input type="submit" value="Registrar">
       <input type="reset" value="Borrar">

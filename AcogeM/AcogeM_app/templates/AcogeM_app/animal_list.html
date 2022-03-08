@@ -1,24 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Animales</h2>
-    <ul>
+    
+<main >
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Animales</h1>
+        <p class="lead text-muted">Aquí podrás encontrar todos los animales que tenemos en la protectora.</p>
+        <p>
+          <a style="border-radius: 4px;" href="{% url 'animal-add' %}" class="btn btn-primary my-2">Añadir Animal</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {% for animal in object_list %}
-            <li><a href="{% url 'animal-detail' animal.pk %}">{{ animal.nom }}</a>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="/media/{{ animal.foto }}">
+            <div class="card-body">
+              <p class="card-text"><a href="{% url 'animal-detail' animal.pk %}">{{ animal.nom }}</a></p>
+              <div class="d-flex justify-content-between align-items-center">
                 {% if user.is_staff %}
-            	<a href="{% url 'animal-update' animal.pk %}">(editar)</a>
-            	<a href="{% url 'animal-delete' animal.pk %}">(borrar)</a>
+                <div class="btn-group">
+                  <a href="{% url 'animal-update' animal.pk %}" type="button" class="btn btn-sm btn-outline-secondary">Editar</a>
+                  <a href="{% url 'animal-delete' animal.pk %}" type="button" class="btn btn-sm btn-outline-secondary">Borrar</a>
+                </div>
                 {% endif %}
-            </li>
+              </div>
+            </div>
+          </div>
+        </div>
         {% endfor %}
-    </ul>
-    <p>
-        {% if user.is_staff %}
-    	<a href="{% url 'animal-add' %}" class="btn btn-default">Añadir animal nuevo</a>
-        {% endif %}
-    </p>
-    <!-- {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}" class="btn btn-default">Cerrar Sesión</a>
-    {% endif %}
-        <a href="{% url 'index.html' %}" class="btn btn-default">Inicio</a> -->
+      </div>
+    </div>
+  </div>
+
+</main>
+
 {% endblock %}

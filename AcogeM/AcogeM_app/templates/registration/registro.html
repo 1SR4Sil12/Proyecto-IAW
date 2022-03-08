@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
-<div class="wrapper fadeInDown">
-	<div id="formContent">
+<div class="row">
+	<div class="col-md-4 offset-md-4">
     	<!-- Tabs Titles -->
     	<h2 class="active"> Sign Up </h2>
 		<form method="POST" action="{% url 'user-add' %}">
 			{% csrf_token %}
-			{{ UForm }}
-			{{ PForm }}
+			{{ UForm|crispy }}
+			{{ PForm|crispy }}
 
 		<div>
 			<button type="submit" value="Registro">Registro</button>

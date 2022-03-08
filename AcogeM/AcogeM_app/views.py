@@ -11,6 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 
 def index(request):
       return render(request,'AcogeM_app/index.html')
@@ -31,6 +32,20 @@ class PerfilListView(LoginRequiredMixin, ListView):
 # ---------------- Configurando las vistas detalle --------------
 class AnimalDetailView(DetailView):
 	model = Animal
+
+# class AnimalEditView(UpdateView):
+# 	model = Animal
+# 	form_class = AnimalForm
+# 	success_url = reverse_lazy('animal-list')
+
+def adopcion(request):
+	if request.method == "POST":
+		for i in Animal.objects.raw('SELECT id from AcogeM_app_animal'):
+			print(i)
+			# for i in Animal.objects.raw('UPDATE AcogeM_app_animal set adoptado = True where id = %'):
+			# 	print(p.adoptado)
+		return render(request, 'AcogeM_app/adoptado.html')
+	
 
 class ProtectoraDetailView(DetailView):
 	model = Protectora
@@ -147,9 +162,7 @@ class PerfilUpdateView(LoginRequiredMixin, UpdateView):
 	form_class = PerfilForm
 	success_url = reverse_lazy('index.html')
 
-def AdoptarAnimal(request):
-	if Animal.adoptado == "False":
-		return render('AcogeM_app/adoptado.html')
+
 
 
 

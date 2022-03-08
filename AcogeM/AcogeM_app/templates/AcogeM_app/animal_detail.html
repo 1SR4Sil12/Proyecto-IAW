@@ -7,7 +7,21 @@
         <li>Tiene {{ animal.edad }} años</li>
         <img src="/media/{{ animal.foto }}">
     </ul>
-    <div>
-		<a href="{% url 'adoptar' %}" class="btn btn-default">Adoptar</a>
-	</div>
+    {% if animal.adoptado == True %}
+    <p>El animal está adoptado</p>
+	{% else %}
+	<script type="text/javascript">
+		function Adopcion()
+	</script>
+	<form class="d-felx" method="POST" action="{% url 'adoptar' %}">
+        {% csrf_token %}
+        <div class="custom-search-input">
+            <span class="input-group-list">
+                <i class="icon icon-search"></i>
+                <button type="submit" class="boton btn-success" name="adoptar">ADOPTAR</button>
+            </span>
+        </div>
+    </form>
+	{% endif %}
 {% endblock %}
+
