@@ -1,0 +1,26 @@
+{% load i18n static %}
+<script src="{% static 'js/cookielaw.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/cookielaw.css' %}">
+<div id="CookielawBanner" style="" >
+<div class="cookie-content">
+    <div class="cookie-titulo">
+        <h1 class="titulo-cookie" style="text-align: center; font-size: 2em;">Cookies y política de privacidad</h1>
+    </div>
+    <div class="cookie-text" style="text-align: center; margin: 1%;">
+        <b>Este sitio web guarda pequeños fragmentos de información (cookies) en su dispositivo con la finalidad de ofrecer un mejor contenido y para finalidades estadísticas. Usted puede <a href="https://support.google.com/accounts/answer/61416?hl=ES%22%3Edesactivar el uso de cookies">desactivar el uso de cookies</a>  modificando la configuración de su navegador. Navegar por nuestro sitio web sin cambiar la configuración del navegador hace que usted nos esté autorizando a guardar esta información en su dispositivo </b>
+    </div>
+    <div class="cookie-buttons">
+         <a class="btn btn-primary" href="javascript:Cookielaw.createCookielawCookie();" style="border-radius: 4px;">Acepto el uso de Cookies</a>
+         <a class="btn btn-primary" href="{% url 'politica_privacidad' %}" style="border-radius: 4px;">Política de Privacidad</a>
+    </div>
+    <div class="close-cookies"></div>
+</div>
+</div>
+
+<script type="application/javascript">
+$(document).ready(function () {
+   $('.close-cookies').click(function () {
+       $(this).parent().hide();
+   });
+});
+</script>

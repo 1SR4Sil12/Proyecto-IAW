@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
-  <div>
+  <div class="col-md-4 offset-md-4">
+  	<h1 align="center">Editar perfil de {{ perfil.user }}</h1>
     <form action="" method="POST">
       {% csrf_token %}
 
-      {{ form }}
+      {{ form|crispy }}
 
-      <input type="submit" value="Editar">
-      <input type="reset" value="Borrar">
+      <input type="submit" value="Guardar">
     </form>
   </div>
 

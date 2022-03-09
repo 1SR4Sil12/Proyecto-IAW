@@ -4,8 +4,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.base import TemplateView
 from AcogeM_app.models import Ciudad, Protectora, Animal, Perfil, User
-from AcogeM_app.forms import AnimalForm, PerfilForm
+from AcogeM_app.forms import AnimalForm, PerfilForm, AdoptadoForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
@@ -19,12 +20,18 @@ def index(request):
 # ------------------- Configurando las vistas -------------------
 class CiudadListView(ListView):
 	model = Ciudad
+	template_name = 'AcogeM_app/ciudad_list'
+	paginate_by = 3
 
 class ProtectoraListView(ListView):
 	model = Protectora
+	template_name = 'AcogeM_app/protectora_list.html'
+	paginate_by = 3
 
 class AnimalListView(ListView):
   	model = Animal
+  	template_name = 'AcogeM_app/animal_list.html'
+  	paginate_by = 3
 
 class PerfilListView(LoginRequiredMixin, ListView):
 	model = Perfil
@@ -33,10 +40,6 @@ class PerfilListView(LoginRequiredMixin, ListView):
 class AnimalDetailView(DetailView):
 	model = Animal
 
-# class AnimalEditView(UpdateView):
-# 	model = Animal
-# 	form_class = AnimalForm
-# 	success_url = reverse_lazy('animal-list')
 
 def adopcion(request):
 	if request.method == "POST":
@@ -53,49 +56,6 @@ class ProtectoraDetailView(DetailView):
 class PerfilDetailView(DetailView):
 	model = Perfil
 
-# Configurando vistas de edición
-
-# Estas son las primeras formas en las que creé las vistas, la primera va enlazada
-# con el forms.py de tal forma que en dicho archivo le digo los campos que quiero que forme
-# parte del formulario. La segunda ya es, con todos los campos excluyendo unos cuantos. En la
-# vista lo que tengo que hacer es especificar los campos que quiero completar.
-
-# def animal_create(request, pk):
-# 	animal = get_object_or_404(Animal, pk=pk)
-# 	if request.method == 'POST':
-# 		form = AnimalForm(request.POST)
-# 		if form.is_valid():
-# 			form.save()
-# 	else:
-# 		form = AnimalForm(instance=animal)
-# 	context = {
-# 		'form': form
-# 	}
-# 	return render(request, 'AcogeM_app/animal_form.html', context)
-
-# def animal_edit(request, pk):
-# 	animal = get_object_or_404(Animal, pk=pk)
-# 	if request.method == 'POST':
-# 		form = AnimalForm(request.POST, instance=animal)
-# 		if form.is_valid():
-# 			# animal.nom = form.cleaned_data['nom']
-# 			# animal.descrip = form.cleaned_data['descrip']
-# 			# animal.tipo = form.cleaned_data['tipo']
-# 			# animal.save()
-# 			form.save()
-# 	else:
-# 		# form = AnimalForm(initial={
-# 		# 	'nom': animal.nom,
-# 		# 	'descrip': animal.descrip,
-# 		# 	'tipo': animal.tipo,
-# 		# 	})
-# 		form = AnimalForm(instance=animal)
-# 	context = {
-# 		'form': form
-# 	}
-# 	return render(request, 'AcogeM_app/animal_form.html', context)
-# 	success_url = reverse_lazy('animal-list')
-
 
 # --------------- Vistas Creación, Detalle y Borrado --------------
 class AnimalCreateView(LoginRequiredMixin, CreateView):
@@ -106,6 +66,11 @@ class AnimalCreateView(LoginRequiredMixin, CreateView):
 class AnimalUpdateView(LoginRequiredMixin, UpdateView):
 	model = Animal
 	form_class = AnimalForm
+	success_url = reverse_lazy('animal-list')
+
+class AnimalAdoptadoView(LoginRequiredMixin, UpdateView):
+	model = Animal
+	form_class = AdoptadoForm
 	success_url = reverse_lazy('animal-list')
 
 class AnimalDeleteView(LoginRequiredMixin, DeleteView):
@@ -161,6 +126,10 @@ class PerfilUpdateView(LoginRequiredMixin, UpdateView):
 	model = Perfil
 	form_class = PerfilForm
 	success_url = reverse_lazy('index.html')
+
+#--------------- Politica de Privacidad ---------------
+class politica(TemplateView):
+	template_name = 'AcogeM_app/politica.html'
 
 
 

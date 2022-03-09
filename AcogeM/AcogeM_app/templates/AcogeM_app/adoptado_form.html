@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <div class="col-md-4 offset-md-4">
+  	<h1 align="center">Quieres adoptar a {{ animal.nom }}</h1>
+    <form enctype="multipart/form-data" action="" method="POST">
+      {% csrf_token %}
+
+      {{ form }}
+
+      <input type="submit" value="Adoptar">
+    </form>
+  </div>
+
+{% endblock %}

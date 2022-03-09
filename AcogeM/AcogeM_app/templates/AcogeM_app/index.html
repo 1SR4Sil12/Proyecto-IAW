@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load cookielaw_tags %}
+
 {% block content %}
 <style type="text/css">
 
@@ -56,6 +58,8 @@
     }
 
 </style>
+
+{% cookielaw_banner %}
 
 <header class="header" id="inicio">
     <div class="contenedor head">

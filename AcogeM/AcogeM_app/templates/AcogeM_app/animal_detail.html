@@ -1,27 +1,60 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Descripción de {{ animal.nom }}</h2>
-    <ul>
-        <li>{{ animal.descrip }} </li>
-        <li>Tiene {{ animal.edad }} años</li>
-        <img src="/media/{{ animal.foto }}">
-    </ul>
+
+<style type="text/css">
+
+    .titulo{
+        text-align: center;
+        font-size: 110px;
+    }
+
+    div.noticia{
+        width: 50%;
+        margin: 5px auto;
+        font-size: medium;
+        text-align: justify;
+        background-color: grey;
+        color: #fff;
+        padding: 15px;
+    }
+
+    div.noticia img.izquierda {
+        float: left;
+        margin-right: 15px;
+    }
+
+    .btn{
+        margin-top: 10px;
+        margin-left: 43%;
+    }
+
+</style>
+
+<h1 class="titulo">{{ animal.nom }}</h1>
+<div class="noticia">
+  <img class="izquierda" src="/media/{{ animal.foto }}">
+    <aside>
+        {{ animal.descrip }}
+        <br>
+        Tiene {{ animal.edad }} años
+    </aside>
+  <div class="reset"></div>
     {% if animal.adoptado == True %}
-    <p>El animal está adoptado</p>
-	{% else %}
-	<script type="text/javascript">
-		function Adopcion()
-	</script>
-	<form class="d-felx" method="POST" action="{% url 'adoptar' %}">
-        {% csrf_token %}
-        <div class="custom-search-input">
-            <span class="input-group-list">
-                <i class="icon icon-search"></i>
-                <button type="submit" class="boton btn-success" name="adoptar">ADOPTAR</button>
-            </span>
-        </div>
-    </form>
-	{% endif %}
+        <p>El animal está adoptado</p>
+    {% else %}
+        <form class="d-felx" action="{% url 'adoptar' animal.pk %}">
+            {% csrf_token %}
+            <div class="custom-search-input">
+                <span class="input-group-list">
+                    <i class="icon icon-search"></i>
+                    <button type="submit" class="btn btn-primary btn-lg" name="adoptar">ADOPTAR</button>
+                </span>
+            </div>
+        </form>
+    {% endif %}
+</div>
+
+    
 {% endblock %}
 

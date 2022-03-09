@@ -23,7 +23,8 @@ from django.conf.urls.static import static
 from AcogeM_app.views import CiudadListView, ProtectoraListView, AnimalListView, PerfilListView
 from AcogeM_app.views import AnimalDetailView, ProtectoraDetailView,PerfilDetailView
 from AcogeM_app.views import AnimalCreateView, AnimalUpdateView, AnimalDeleteView
-from AcogeM_app.views import adopcion
+from AcogeM_app.views import AnimalAdoptadoView
+from AcogeM_app.views import politica
 from AcogeM_app.views import PerfilUpdateView
 from AcogeM_app.views import RegistroUsuario
 
@@ -63,7 +64,7 @@ urlpatterns = [
     path('animales/<int:pk>/update', permission_required('is_staff')(AnimalUpdateView.as_view()), name='animal-update'),
     path('animales/<int:pk>/delete/', permission_required('is_staff')(AnimalDeleteView.as_view()), name='animal-delete'),
 
-    path('adoptar', views.adopcion, name='adoptar'),
+    path('animales/<int:pk>/adoptar/', AnimalAdoptadoView.as_view(), name='adoptar'),
     
     path('perfiles/', PerfilListView.as_view(), name='perfil-list'),
     path('perfiles/<int:pk>/', PerfilDetailView.as_view(), name='perfil-detail'),
@@ -77,6 +78,9 @@ urlpatterns = [
 
 	#Add Django site authentication urls (for login, logout, password management)
     path('accounts/', include('django.contrib.auth.urls')),
+
+    #Politica
+    path('politica_privacidad/', politica.as_view(), name='politica_privacidad'),
 
     #Django REST API url
     path('api', include(router.urls)),

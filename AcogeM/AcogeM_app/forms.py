@@ -14,6 +14,11 @@ class AnimalForm(forms.ModelForm):
 		model = Animal
 		exclude = ['created_at', 'created_by', 'last_modified_by']
 
+class AdoptadoForm(forms.ModelForm):
+	class Meta:
+		model = Animal
+		fields = ('adoptado',)
+
 # class UserForm(forms.ModelForm):
 # 	username = forms.CharField(max_length=30)
 # 	password = forms.CharField(max_length=20, widget=forms.PasswordInput)

@@ -51,7 +51,6 @@ class Animal(models.Model):
 		verbose_name_plural = "Animales"
 
 class Perfil(models.Model):
-	# nom = models.CharField('Nombre', max_length=30)
 	user = models.OneToOneField(User, on_delete=models.CASCADE, default=0)
 	ape = models.CharField('Apellidos', max_length=50)
 	dni = models.CharField(max_length=9)

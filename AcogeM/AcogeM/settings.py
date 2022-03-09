@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'rest_framework',
     'crispy_forms',
+    'cookielaw',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
