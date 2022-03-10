@@ -23,6 +23,8 @@ from django.conf.urls.static import static
 from AcogeM_app.views import CiudadListView, ProtectoraListView, AnimalListView, PerfilListView
 from AcogeM_app.views import AnimalDetailView, ProtectoraDetailView,PerfilDetailView
 from AcogeM_app.views import AnimalCreateView, AnimalUpdateView, AnimalDeleteView
+from AcogeM_app.views import CiudadCreateView, CiudadDeleteView
+from AcogeM_app.views import ProtectoraCreateView, ProtectoraDeleteView
 from AcogeM_app.views import AnimalAdoptadoView
 from AcogeM_app.views import politica
 from AcogeM_app.views import PerfilUpdateView
@@ -53,9 +55,14 @@ urlpatterns = [
     path('', views.index, name='index.html'),
 
     path('ciudades/', CiudadListView.as_view(), name='ciudad-list'),
+    path('ciudades/add/', permission_required('is_staff')(CiudadCreateView.as_view()), name='ciudad-add'),
+    path('ciudades/<int:pk>/delete/', permission_required('is_staff')(CiudadDeleteView.as_view()), name='ciudad-delete'),
 
     path('protectoras/', ProtectoraListView.as_view(), name='protectora-list'),
     path('protectoras/<int:pk>/', ProtectoraDetailView.as_view(), name='protectora-detail'),
+
+    path('protectoras/add/', permission_required('is_staff')(ProtectoraCreateView.as_view()), name='protectora-add'),
+    path('protectoras/<int:pk>/delete/', permission_required('is_staff')(ProtectoraDeleteView.as_view()), name='protectora-delete'),
 
     path('animales/', AnimalListView.as_view(), name='animal-list'),
     path('animales/<int:pk>/', AnimalDetailView.as_view(), name='animal-detail'),

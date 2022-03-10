@@ -6,7 +6,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.base import TemplateView
 from AcogeM_app.models import Ciudad, Protectora, Animal, Perfil, User
-from AcogeM_app.forms import AnimalForm, PerfilForm, AdoptadoForm
+from AcogeM_app.forms import AnimalForm, PerfilForm, AdoptadoForm, CiudadForm, ProtectoraForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
@@ -77,6 +77,24 @@ class AnimalDeleteView(LoginRequiredMixin, DeleteView):
     model = Animal
     success_url = reverse_lazy('animal-list')
 
+# --------- Creacion y Eliminación Ciudades y Protectoras ------------
+class CiudadCreateView(LoginRequiredMixin, CreateView):
+	model = Ciudad
+	form_class = CiudadForm
+	success_url = reverse_lazy('ciudad-list')
+
+class CiudadDeleteView(LoginRequiredMixin, DeleteView):
+	model = Ciudad
+	success_url = reverse_lazy('ciudad-list')
+
+class ProtectoraCreateView(LoginRequiredMixin, CreateView):
+	model = Protectora
+	form_class = ProtectoraForm
+	success_url = reverse_lazy('protectora-list')
+
+class ProtectoraDeleteView(LoginRequiredMixin, DeleteView):
+	model = Protectora
+	success_url = reverse_lazy('protectora-list')
 
 # --------------- Registro de Usuario ------------------------------
 def RegistroUsuario(request):

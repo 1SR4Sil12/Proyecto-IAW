@@ -37,11 +37,11 @@
     <aside>
         {{ animal.descrip }}
         <br>
-        Tiene {{ animal.edad }} años
+        Tiene {{ animal.edad }} años y se encuentra en {{ animal.protectora }}
     </aside>
   <div class="reset"></div>
     {% if animal.adoptado == True %}
-        <p>El animal está adoptado</p>
+        <p><b><u>El animal está adoptado</u></b></p>
     {% else %}
         <form class="d-felx" action="{% url 'adoptar' animal.pk %}">
             {% csrf_token %}

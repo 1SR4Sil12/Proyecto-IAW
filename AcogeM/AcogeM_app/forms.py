@@ -1,5 +1,5 @@
 from django import forms
-from AcogeM_app.models import Animal, Perfil
+from AcogeM_app.models import Animal, Perfil, Ciudad, Protectora
 
 # Una forma de crear el formulario, especificandole los campos que quiero, de la
 # forma uso todos los campos, y excluyo algunos.
@@ -33,3 +33,13 @@ class PerfilForm(forms.ModelForm):
 	class Meta:
 		model = Perfil
 		fields = ('ape', 'dni', 'tel', 'exp')
+
+class CiudadForm(forms.ModelForm):
+	class Meta:
+		model = Ciudad
+		exclude = ['created_at', 'created_by', 'last_modified_by']
+
+class ProtectoraForm(forms.ModelForm):
+	class Meta:
+		model = Protectora
+		exclude = ['created_at', 'created_by', 'last_modified_by']
