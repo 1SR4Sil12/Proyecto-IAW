@@ -92,4 +92,8 @@ urlpatterns = [
     #Django REST API url
     path('api', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    #OAuth y OpenID
+    path(r'openid/', include('django_openid_auth.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
