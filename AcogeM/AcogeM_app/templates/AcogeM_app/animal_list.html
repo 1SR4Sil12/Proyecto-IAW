@@ -9,9 +9,11 @@
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Animales</h1>
         <p class="lead text-muted">Aquí podrás encontrar todos los animales que tenemos en la protectora.</p>
+        {% if user.is_staff %}
         <p>
           <a style="border-radius: 4px;" href="{% url 'animal-add' %}" class="btn btn-primary my-2">Añadir Animal</a>
         </p>
+        {% endif %}
       </div>
     </div>
   </section>
@@ -32,6 +34,9 @@
                   <a href="{% url 'animal-update' animal.pk %}" type="button" class="btn btn-sm btn-outline-secondary">Editar</a>
                   <a href="{% url 'animal-delete' animal.pk %}" type="button" class="btn btn-sm btn-outline-secondary">Borrar</a>
                 </div>
+                {% endif %}
+                {% if animal.adoptado == True %}
+                  <a type="button" class="btn btn-sm btn-outline-secondary">Adoptado</a>
                 {% endif %}
               </div>
             </div>

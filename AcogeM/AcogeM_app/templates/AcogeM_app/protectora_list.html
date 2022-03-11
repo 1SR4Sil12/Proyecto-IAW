@@ -9,9 +9,11 @@
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Protectoras</h1>
         <p class="lead text-muted">Nuestras protectoras.</p>
+        {% if user.is_staff %}
         <p>
           <a style="border-radius: 4px;" href="{% url 'protectora-add' %}" class="btn btn-primary my-2">Añadir Protectora</a>
         </p>
+        {% endif %}
       </div>
     </div>
   </section>
