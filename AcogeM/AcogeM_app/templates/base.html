@@ -35,7 +35,7 @@
           <li class="dropdown">
             <a style="color: white; text-decoration: none;" href="#" class="" data-toggle="dropdown">{{ user }} <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="{% url 'perfil-detail' user.pk %}">Mi Perfil</a></li>
+              <li><a href="{% url 'perfil-detail' user.perfil.pk %}">Mi Perfil</a></li>
               {% if user.is_staff %}
                 <li><a href="{% url 'admin:index' %}">Administración</a></li>
               {% endif %}
